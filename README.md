@@ -1,1 +1,1 @@
-"#Trippy"  
+#Trippy  
