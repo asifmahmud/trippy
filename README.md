@@ -1,1 +1,3 @@
-# Trippy  
+# Trippy
+
+Development is in progress!  
