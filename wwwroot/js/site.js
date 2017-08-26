@@ -1,10 +1,14 @@
 ﻿// site.js
 
 (function () {
-    $('#username').text("Asif Mahmud");
-
-    var menuItems = $(".menu li a");
-    menuItems.on("click", function () {
-        alert("Hello");
+    var $sidebarAndContainer = $("#sidebar, #container");
+    $("#toggleSidebar").on("click", function () {
+        $sidebarAndContainer.toggleClass("hide-sidebar");
+        if ($sidebarAndContainer.hasClass("hide-sidebar")) {
+            $(this).text("Show Sidebar");
+        }
+        else {
+            $(this).text("Hide Sidebar");
+        }
     });
 })();
