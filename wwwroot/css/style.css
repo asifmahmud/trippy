@@ -14,8 +14,7 @@ input[type=text], input[type=password] textarea{
 }
 
 #container {
-    margin: 0 0 0 250px;;
-    
+    margin: 0 0 0 250px;
 }
 
 #sidebar {
@@ -48,6 +47,10 @@ input[type=text], input[type=password] textarea{
 
 .menu li.active{
     font-weight: bold;
+}
+
+.menu li a{
+    color: #eee;
 }
 
 
