@@ -14,7 +14,7 @@ input[type=text], input[type=password] textarea{
 }
 
 #container {
-    margin: 0 0 0 250px;
+    margin: 0 0 0 200px;
     transition: margin-left ease .25s;
 }
 
@@ -28,7 +28,7 @@ input[type=text], input[type=password] textarea{
     height: 100%;
     background: #2c3e50;
     color: #eee;
-    width: 250px;
+    width: 200px;
     overflow: hidden;
     left: 0;
     transition: left ease .25s;
@@ -36,7 +36,7 @@ input[type=text], input[type=password] textarea{
 }
 
 #sidebar.hide-sidebar{
-    left: -250px;
+    left: -200px;
     transition: left ease .25s;
 }
 
@@ -50,6 +50,13 @@ input[type=text], input[type=password] textarea{
     max-width: 50px;
     border-radius: 50%;
     padding: 3px;
+}
+
+#username {
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 5px;
+    
 }
 
 .menu {
@@ -73,4 +80,5 @@ input[type=text], input[type=password] textarea{
     background-color: #263238;
     color: #eee;
     padding: 8px 5px;
+    text-align: center;
 }
