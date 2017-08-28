@@ -9,6 +9,7 @@ label {
     display: block;
 }
 
+
 input[type=text], input[type=password] textarea{
     width: 150px;
 }

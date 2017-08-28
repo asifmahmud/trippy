@@ -23,16 +23,19 @@ namespace trippy
         {
             if (env.IsDevelopment())
             {
-                app.UseStaticFiles();
-                app.UseMvc(config =>
-                {
-                    config.MapRoute(
-                        name: "Default",
-                        template: "{controller}/{action}/{id?}",
-                        defaults: new {controller = "App", action = "Index"}
-                        );
-                });
+                app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+            app.UseMvc(config =>
+            {
+                config.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "App", action = "Index" }
+                    );
+
+            });
         }
     }
 }
