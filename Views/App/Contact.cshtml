@@ -10,8 +10,12 @@
 
 
 <h2>Contact Me</h2>
+@if (ViewBag.UserMessage != null)
+{
+    <div>@ViewBag.UserMessage</div>
 
-<form>
+}
+<form method="post">
 
     <span asp-validation-summary="ModelOnly"></span>
 
