@@ -3,6 +3,8 @@
 <head>
     <title>Trippy - @ViewBag.Title</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
 </head>
 <body>
@@ -19,7 +21,9 @@
     <div id="container">
         <div id="main">
             <div>
-                <button id="toggleSidebar">Hide Sidebar</button>
+                <button id="toggleSidebar" class="btn btn-primary btn-sm">
+                    <i class="fa fa-angle-left"></i>
+                </button>
             </div>
             @RenderBody()
         </div>
@@ -29,6 +33,7 @@
     </div>
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
     @RenderSection("scripts", false)
 

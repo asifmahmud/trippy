@@ -1,18 +1,4 @@
-﻿body {
-    font-family: arial, sans-serif;
-    font-size: 14px;
-    margin: 0;
-}
-
-label {
-    font-weight: bold;
-    display: block;
-}
-
-
-input[type=text], input[type=password] textarea{
-    width: 150px;
-}
+﻿
 
 #container {
     margin: 0 0 0 200px;
@@ -27,24 +13,24 @@ input[type=text], input[type=password] textarea{
 #sidebar {
     position: fixed;
     height: 100%;
-    background: #2c3e50;
+    /* background: #2c3e50; */
+    background-color: #263238;
     color: #eee;
     width: 200px;
     overflow: hidden;
     left: 0;
     transition: left ease .25s;
-    
 }
 
-#sidebar.hide-sidebar{
-    left: -200px;
-    transition: left ease .25s;
-}
+    #sidebar.hide-sidebar{
+        left: -200px;
+        transition: left ease .25s;
+    }
 
 #main {
     margin: 0;
     padding: 4px;
-    background-color: #ECEFF1;
+    
 }
 
 .headshot{
@@ -65,21 +51,22 @@ input[type=text], input[type=password] textarea{
     font-size: 12px;
 }
 
-.menu li.active{
-    font-weight: bold;
-}
+    .menu li.active{
+        font-weight: bold;
+    }
 
-.menu li a{
-    color: #eee;
-}
+    .menu li a {
+        color: #eee;
+    }
 
 
 #footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #263238;
-    color: #eee;
+    /*background-color: #263238;*/
+    background-color: #E0E0E0;
+    color: #212121;
     padding: 8px 5px;
     text-align: center;
 }
