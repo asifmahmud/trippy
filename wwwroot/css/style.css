@@ -1,20 +1,19 @@
 ﻿
-
 #container {
     margin: 0 0 0 200px;
     transition: margin-left ease .25s;
 }
 
-#container.hide-sidebar{
-    margin-left: 0;
-    transition: margin-left ease .25s;
-}
+    #container.hide-sidebar{
+        margin-left: 0;
+        transition: margin-left ease .25s;
+    }
 
 #sidebar {
     position: fixed;
     height: 100%;
     /* background: #2c3e50; */
-    background-color: #263238;
+    background-color: #212121; /*#263238;*/
     color: #eee;
     width: 200px;
     overflow: hidden;
@@ -27,11 +26,11 @@
         transition: left ease .25s;
     }
 
-#main {
-    margin: 0;
-    padding: 4px;
-    
-}
+    #sidebar .nav{
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+    }
 
 .headshot{
     max-width: 50px;
@@ -60,13 +59,12 @@
     }
 
 
-#footer {
+/*#footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    /*background-color: #263238;*/
     background-color: #E0E0E0;
     color: #212121;
     padding: 8px 5px;
     text-align: center;
-}
+}*/
