@@ -10,8 +10,10 @@
 <body>
 
     <div id="sidebar">
-        <img src="~/img/default_avatar_large.png" class="headshot" />
-        <span id="username">samhastings</span>
+        <div id="user-info">
+            <img src="~/img/default_avatar_large.png" class="headshot" />
+            <span id="username">samhastings</span>
+        </div>
         <ul class="nav">
             <li> <a asp-controller="App" asp-action="Index">Home</a></li>
             <li> <a asp-controller="App" asp-action="About">About</a></li>
@@ -50,9 +52,6 @@
                 @RenderBody()
             </div>
         </div>
-    </div>
-    <div id="footer">
-        &copy; 2017 Trippy Inc.
     </div>
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>

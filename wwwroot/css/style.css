@@ -9,12 +9,15 @@
         transition: margin-left ease .25s;
     }
 
+    #container .navbar-brand{
+        font-size: 22px;
+    }
+
 #sidebar {
     position: fixed;
     height: 100%;
-    /* background: #2c3e50; */
-    background-color: #212121; /*#263238;*/
-    color: #eee;
+    background-color: #212121;
+    color: #BDBDBD;
     width: 200px;
     overflow: hidden;
     left: 0;
@@ -32,11 +35,15 @@
         text-align: center;
     }
 
-.headshot{
-    max-width: 50px;
-    border-radius: 50%;
-    padding: 3px;
+#user-info{
+    margin-top: 2px;
 }
+    #user-info .headshot{
+        max-width: 50px;
+        border-radius: 50%;
+        padding: 3px;
+    
+    }
 
 #username {
     font-weight: bold;
@@ -57,14 +64,3 @@
     .menu li a {
         color: #eee;
     }
-
-
-/*#footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #E0E0E0;
-    color: #212121;
-    padding: 8px 5px;
-    text-align: center;
-}*/
