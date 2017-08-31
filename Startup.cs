@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using trippy.Services;
 using Microsoft.Extensions.Configuration;
+using trippy.Models;
 
 namespace trippy
 {
@@ -38,6 +39,7 @@ namespace trippy
                 services.AddScoped<IMailService, DebugMailService>();
 
             }
+            services.AddDbContext<WorldContext>();
             services.AddMvc();
         }
 
