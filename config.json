@@ -1,6 +1,8 @@
 {
   "MailSettings": {
     "toAddress": "amahmud@uci.edu",
-
-  }
+  },
+  "ConnectionStrings" :{
+    "DbConnection": "Data Source=(localdb)\\MSSQLLocalDB;Database=TrippyDb;Trusted_Connection=true;MultipleActiveResultSets=true"
+  } 
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using trippy.ViewModels;
 using trippy.Services;
 using Microsoft.Extensions.Configuration;
+using trippy.Models;
 
 namespace trippy.Controllers.Web
 {
@@ -14,15 +15,18 @@ namespace trippy.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
+        private WorldContext _context;
 
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService, IConfigurationRoot config, WorldContext context)
         {
             _mailService = mailService;
             _config = config;
+            _context = context;
         }
         public IActionResult Index()
         {
-            return View();
+            var data = _context.Trips.ToList();
+            return View(data);
         }
 
         public IActionResult Contact()
