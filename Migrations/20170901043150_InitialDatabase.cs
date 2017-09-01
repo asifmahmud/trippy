@@ -16,7 +16,7 @@ namespace trippy.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -30,10 +30,10 @@ namespace trippy.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Lattitude = table.Column<double>(type: "float", nullable: false),
+                    Arrival = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Latitude = table.Column<double>(type: "float", nullable: false),
                     Longitude = table.Column<double>(type: "float", nullable: false),
-                    Name = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Order = table.Column<int>(type: "int", nullable: false),
                     TripId = table.Column<int>(type: "int", nullable: true)
                 },

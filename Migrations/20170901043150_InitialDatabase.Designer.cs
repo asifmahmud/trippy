@@ -11,7 +11,7 @@ using trippy.Models;
 namespace trippy.Migrations
 {
     [DbContext(typeof(WorldContext))]
-    [Migration("20170831071344_InitialDatabase")]
+    [Migration("20170901043150_InitialDatabase")]
     partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,13 +26,13 @@ namespace trippy.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("ArrivalDate");
+                    b.Property<DateTime>("Arrival");
 
-                    b.Property<double>("Lattitude");
+                    b.Property<double>("Latitude");
 
                     b.Property<double>("Longitude");
 
-                    b.Property<int>("Name");
+                    b.Property<string>("Name");
 
                     b.Property<int>("Order");
 
@@ -52,7 +52,7 @@ namespace trippy.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int>("Name");
+                    b.Property<string>("Name");
 
                     b.Property<string>("UserName");
 
