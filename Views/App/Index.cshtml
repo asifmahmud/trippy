@@ -1,8 +1,8 @@
-﻿
+﻿@model IEnumerable<trippy.Models.Trip>
+
 @{ 
     ViewBag.Title = "Home Page";
 }
-
 
 
 <div class="row">
@@ -24,5 +24,12 @@
     </div>
     <div class="col-md-6">
         <h2>The Map</h2>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>@item.Name</li>
+
+            }
+        </ul>
     </div>
 </div>

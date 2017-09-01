@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using trippy.Services;
 using Microsoft.Extensions.Configuration;
 using trippy.Models;
+using Microsoft.Extensions.Logging;
 
 namespace trippy
 {
@@ -39,18 +40,29 @@ namespace trippy
                 services.AddScoped<IMailService, DebugMailService>();
 
             }
-           
+
+            services.AddLogging();
             services.AddDbContext<WorldContext>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WorldContextSeedData seed)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            WorldContextSeedData seed, 
+            ILoggerFactory factory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                factory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                factory.AddDebug(LogLevel.Error);
             }
 
             app.UseStaticFiles();
