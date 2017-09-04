@@ -1,3 +1,3 @@
 # Trippy
 
-Development is in progress! Hey
+Development is in progress!
