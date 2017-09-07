@@ -17,7 +17,17 @@ namespace trippy.Models
 
         public IEnumerable<Trip> GetAllTrips()
         {
-            return _context.Trips.ToList();
+           return _context.Trips.ToList();
+        }
+
+        public void AddTrip(Trip trip)
+        {
+            _context.Add(trip);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _context.SaveChangesAsync()) > 0;
         }
     }
 }

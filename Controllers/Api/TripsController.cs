@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,12 @@ namespace trippy.Controllers.Api
     public class TripsController : Controller
     {
         private IWorldRepository _repository;
-        private WorldContext _context;
+        private ILogger<TripViewModel> _logger;
 
-        public TripsController(IWorldRepository repository, WorldContext context)
+        public TripsController(IWorldRepository repository, ILogger<TripViewModel> logger)
         {
             _repository = repository;
-            _context = context;
+            _logger = logger;
         }
 
         [HttpGet("api/trips")]
@@ -32,28 +33,36 @@ namespace trippy.Controllers.Api
             }
             catch(Exception ex)
             {
-                string Message = string.Format("Something went wrong: {0}", ex.Message);
-                return BadRequest(Message);
+                _logger.LogError("Unable to get all trips: {0}", ex);
+                return BadRequest("Error Occured while trying to get trip information");
             }
         }
 
         [HttpPost("api/trips")]
-        public IActionResult Post([FromBody]TripViewModel trip)
+        public async Task<IActionResult> Post([FromBody]TripViewModel trip)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var newTrip = Mapper.Map<Trip>(trip);
-                    string path = string.Format("api/trips/{0}", trip.Name);
-                    return Created(path, Mapper.Map<TripViewModel>(newTrip));
+                    _repository.AddTrip(newTrip);
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        string path = string.Format("api/trips/{0}", trip.Name);
+                        return Created(path, Mapper.Map<TripViewModel>(newTrip));
+                    }
+                    else
+                    {
+                        return BadRequest("Error while saving trip to database");
+                    }
                 }
                 return BadRequest("Bad Data");
             }
             catch(Exception ex)
             {
-                string Message = string.Format("Something went wrong: {0}", ex.Message);
-                return BadRequest(Message);
+                _logger.LogError("Unable to save trip data: {0}", ex);
+                return BadRequest("Error Occured while trying to save trip information");
             }
         }
     }
