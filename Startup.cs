@@ -10,6 +10,8 @@ using trippy.Services;
 using Microsoft.Extensions.Configuration;
 using trippy.Models;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
+using trippy.ViewModels;
 
 namespace trippy
 {
@@ -55,6 +57,11 @@ namespace trippy
             WorldContextSeedData seed, 
             ILoggerFactory factory)
         {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<TripViewModel, Trip>().ReverseMap();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

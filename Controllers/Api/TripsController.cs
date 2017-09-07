@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using trippy.Models;
+using trippy.ViewModels;
 
 namespace trippy.Controllers.Api
 {
@@ -25,7 +27,8 @@ namespace trippy.Controllers.Api
 
             try
             {
-                return Ok(_repository.GetAllTrips());
+                var result = _repository.GetAllTrips();
+                return Ok(Mapper.Map<IEnumerable<TripViewModel>>(result));
             }
             catch(Exception ex)
             {
@@ -35,12 +38,17 @@ namespace trippy.Controllers.Api
         }
 
         [HttpPost("api/trips")]
-        public IActionResult Post([FromBody]Trip trip)
+        public IActionResult Post([FromBody]TripViewModel trip)
         {
             try
             {
-                return Ok(true);
-                //return Ok(_context.Trips.Add(trip));
+                if (ModelState.IsValid)
+                {
+                    var newTrip = Mapper.Map<Trip>(trip);
+                    string path = string.Format("api/trips/{0}", trip.Name);
+                    return Created(path, Mapper.Map<TripViewModel>(newTrip));
+                }
+                return BadRequest("Bad Data");
             }
             catch(Exception ex)
             {

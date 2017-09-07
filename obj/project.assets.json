@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "AutoMapper/4.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AutoMapper.dll": {}
+        }
+      },
       "Libuv/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -4750,6 +4759,21 @@
     }
   },
   "libraries": {
+    "AutoMapper/4.2.1": {
+      "sha512": "BxAMt0Sl9dQIPPualuMv6IhJ5QrWmWSgyYZ/QxcQcR2IBu57/CXG5IP+73sFIr4FMNtcrUugWnuOWkYnlrLVWQ==",
+      "type": "package",
+      "path": "automapper/4.2.1",
+      "files": [
+        "automapper.4.2.1.nupkg.sha512",
+        "automapper.nuspec",
+        "lib/dotnet5.1/AutoMapper.dll",
+        "lib/dotnet5.1/AutoMapper.xml",
+        "lib/net45/AutoMapper.dll",
+        "lib/net45/AutoMapper.xml",
+        "lib/portable-net45+win+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10/AutoMapper.dll",
+        "lib/portable-net45+win+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10/AutoMapper.xml"
+      ]
+    },
     "Libuv/1.10.0": {
       "sha512": "GsCf4q+eyaI49rCPlgYxdxa1SQCysXFFdSJWdstrwxytg4+VPYLYrXD4AT2rjHVJ+UF7SSWX9CapWEYaU4ejVQ==",
       "type": "package",
@@ -12528,6 +12552,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "AutoMapper >= 4.2.1",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 2.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.0.0",
@@ -12597,6 +12622,10 @@
             "target": "Package",
             "version": "2.0.0"
           },
+          "AutoMapper": {
+            "target": "Package",
+            "version": "4.2.1"
+          },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "2.0.0"
@@ -12609,5 +12638,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AutoMapper 4.2.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }
