@@ -1,3 +1,3 @@
 # Trippy
 
-Development is in progress!
+Coming soon!
