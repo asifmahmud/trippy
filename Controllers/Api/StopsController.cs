@@ -37,5 +37,30 @@ namespace trippy.Controllers.Api
             }
             return BadRequest("An error occured while trying to get stops");
         }
+
+        [HttpPost("api/trips/{tripName}/stops")]
+        public async Task<IActionResult> Post(string tripName, [FromBody] StopViewModel stop)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newStop = Mapper.Map<Stop>(stop);
+                    _repository.AddStop(tripName, newStop);
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        string path = string.Format("api/trips/{0}/stops/{1}", tripName, newStop.Name);
+                        return Created(path, Mapper.Map<StopViewModel>(newStop));
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError("Failed to save stops: {0}", ex);
+
+            }
+            return BadRequest("An error occured while trying to save stops");
+
+        }
     }
 }
