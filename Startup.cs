@@ -86,6 +86,7 @@ namespace trippy
             });
 
             seed.EnsureSeedData().Wait();
+
         }
     }
 }
