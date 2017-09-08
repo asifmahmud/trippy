@@ -37,6 +37,10 @@ namespace trippy.Services
             var client = new HttpClient();
             var json = await client.GetStringAsync(url);
 
+            Console.WriteLine("================================================");
+            Console.WriteLine("JSON: {0}", json);
+            Console.WriteLine("================================================");
+
             // Read out the results
 
             var results = JObject.Parse(json);
@@ -49,7 +53,7 @@ namespace trippy.Services
             {
                 var coords = resources["location"];
                 result.Latitude = (double)coords["lat"];
-                result.Longitude = (double)coords["lon"];
+                result.Longitude = (double)coords["lng"];
                 result.Success = true;
                 result.Message = "Success";
             }

@@ -12,6 +12,7 @@ using trippy.Models;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using trippy.ViewModels;
+using System.Net;
 
 namespace trippy
 {
@@ -45,6 +46,7 @@ namespace trippy
 
             services.AddLogging();
             services.AddDbContext<WorldContext>();
+            services.AddTransient<GeoLocService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
             services.AddMvc();

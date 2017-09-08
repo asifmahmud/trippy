@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using trippy.Models;
+using trippy.Services;
 using trippy.ViewModels;
 
 namespace trippy.Controllers.Api
@@ -15,11 +16,13 @@ namespace trippy.Controllers.Api
     {
         private ILogger<StopsController> _logger;
         private IWorldRepository _repository;
+        private GeoLocService _geoloc;
 
-        public StopsController(IWorldRepository repository, ILogger<StopsController> logger)
+        public StopsController(IWorldRepository repository, GeoLocService geoloc, ILogger<StopsController> logger)
         {
             _logger = logger;
             _repository = repository;
+            _geoloc = geoloc;
         }
 
         [HttpGet("api/trips/{tripName}/stops")]
@@ -46,12 +49,26 @@ namespace trippy.Controllers.Api
                 if (ModelState.IsValid)
                 {
                     var newStop = Mapper.Map<Stop>(stop);
-                    _repository.AddStop(tripName, newStop);
-                    if (await _repository.SaveChangesAsync())
+
+                    var geocode = await _geoloc.GetLocAsync(newStop.Name);
+
+                    if (!geocode.Success)
                     {
-                        string path = string.Format("api/trips/{0}/stops/{1}", tripName, newStop.Name);
-                        return Created(path, Mapper.Map<StopViewModel>(newStop));
+                        _logger.LogError(geocode.Message);
                     }
+                    else
+                    {
+                        newStop.Latitude = geocode.Latitude;
+                        newStop.Longitude = geocode.Longitude;
+
+                        _repository.AddStop(tripName, newStop);
+                        if (await _repository.SaveChangesAsync())
+                        {
+                            string path = string.Format("api/trips/{0}/stops/{1}", tripName, newStop.Name);
+                            return Created(path, Mapper.Map<StopViewModel>(newStop));
+                        }
+                    }
+
                 }
             }
             catch(Exception ex)
