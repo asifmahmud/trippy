@@ -9,6 +9,7 @@ using trippy.Services;
 using Microsoft.Extensions.Configuration;
 using trippy.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace trippy.Controllers.Web
 {
@@ -32,17 +33,22 @@ namespace trippy.Controllers.Web
         }
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Trips()
+        {
             try
             {
                 var data = _repository.GetAllTrips();
                 return View(data);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError("Failed to get trips in Index page: {0}", ex.Message);
                 return Redirect("/error");
             }
-
         }
 
         public IActionResult Contact()
