@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using trippy.ViewModels;
 using System.Net;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace trippy
 {
@@ -38,6 +40,14 @@ namespace trippy
         {
             services.AddSingleton(_config);
 
+            services.AddIdentity<User, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+
+            })
+            .AddEntityFrameworkStores<WorldContext>();
+
             if (_env.IsDevelopment())
             {
                 services.AddScoped<IMailService, DebugMailService>();
@@ -49,7 +59,13 @@ namespace trippy
             services.AddTransient<GeoLocService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                if (_env.IsProduction())
+                {
+                    config.Filters.Add(new RequireHttpsAttribute());
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +93,7 @@ namespace trippy
             }
 
             app.UseStaticFiles();
+            AuthAppBuilderExtensions.UseAuthentication(app);
             app.UseMvc(config =>
             {
                 config.MapRoute(

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,35 @@ namespace trippy.Models
     public class WorldContextSeedData
     {
         private WorldContext _context;
+        private UserManager<User> _userManager;
 
-        public WorldContextSeedData(WorldContext context)
+        public WorldContextSeedData(WorldContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
       
         public async Task EnsureSeedData()
         {
+            if (await _userManager.FindByEmailAsync("amahmud@uci.edu") == null)
+            {
+                var User = new User()
+                {
+                    UserName = "asifmahmud",
+                    Email = "amahmud@uci.edu",
+
+                };
+
+                await _userManager.CreateAsync(User, "Anzam478!");
+            }
+
             if (!_context.Trips.Any())
             {
                 var CalTrip = new Trip()
                 {
                     DateCreated = DateTime.Now,
                     Name = "California Trip",
-                    UserName = "",
+                    UserName = "asifmahmud",
                     Stops = new List<Stop>()
                     {
                         new Stop() {  Name = "Atlanta, GA", Arrival = new DateTime(2014, 6, 4), Latitude = 33.748995, Longitude = -84.387982, Order = 0 },
@@ -42,7 +57,7 @@ namespace trippy.Models
                 {
                     DateCreated = DateTime.Now,
                     Name = "US Trip",
-                    UserName = "",
+                    UserName = "asifmahmud",
                     Stops = new List<Stop>()
                     {
                         new Stop() { Order = 0, Latitude =  33.748995, Longitude =  -84.387982, Name = "Atlanta, Georgia", Arrival = DateTime.Parse("Jun 3, 2014") },

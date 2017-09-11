@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,8 +12,10 @@ using trippy.ViewModels;
 
 namespace trippy.Controllers.Api
 {
+    [Authorize]
     public class TripsController : Controller
     {
+        
         private IWorldRepository _repository;
         private ILogger<TripViewModel> _logger;
 
