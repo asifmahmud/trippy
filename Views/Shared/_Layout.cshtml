@@ -17,41 +17,37 @@
                 <span id="username">@User.Identity.Name</span>
             }
         </div>
-        <ul class="nav">
-            <li> <a asp-controller="App" asp-action="Index">Home</a></li>
-            <li> <a asp-controller="App" asp-action="About">About</a></li>
-            <li> <a asp-controller="App" asp-action="Contact">Contact</a></li>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li> <a asp-controller="App" asp-action="Trips">My Trips</a></li>
-                <li> <a asp-controller="Account" asp-action="Logout">Logout</a></li>
-            }
-        </ul>
     </div>
     <div id="container">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-left" >
                     <li>
-                        <a href="#" id="toggleSidebar">
-                            <i class="fa fa-bars"></i>
+                        <a asp-controller="App" asp-action="Index" class="navbar-brand">
+                            Trippy
                         </a>
                     </li>
                 </ul>
-                <a asp-controller="App" asp-action="Index" class="navbar-brand">
-                    Trippy
-                </a>
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" >
-                            <i class="fa fa-save"></i> Save
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-print"></i> Print
-                        </a>
-                    </li>
+                    <li> <a asp-controller="App" asp-action="About">About</a></li>
+                    <li> <a asp-controller="App" asp-action="Contact">Contact</a></li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li> <a asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li class="active">
+                            <a asp-controller="Account" asp-action="SignUp" class="btn btn-default">
+                                Sign Up
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li> <a asp-controller="App" asp-action="Trips">My Trips</a></li>
+                        <li> <a asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    }
+
                 </ul>
             </div>
         </nav> 

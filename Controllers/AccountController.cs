@@ -40,11 +40,11 @@ namespace trippy.Controllers
                 {
                     if (string.IsNullOrWhiteSpace(returnURL))
                     {
-                        RedirectToAction("Trips", "App");
+                        return RedirectToAction("Trips", "App");
                     }
                     else
                     {
-                        Redirect(returnURL);
+                        return Redirect(returnURL);
                     }
                     
                 }

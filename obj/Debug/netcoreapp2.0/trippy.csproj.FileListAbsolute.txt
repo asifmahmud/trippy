@@ -1,4 +1,3 @@
-C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.csprojResolveAssemblyReference.cache
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.csproj.CoreCompileInputs.cache
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.AssemblyInfoInputs.cache
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.AssemblyInfo.cs
@@ -9,3 +8,4 @@ C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\bin\Debug\netc
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\bin\Debug\netcoreapp2.0\trippy.pdb
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.dll
 C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.pdb
+C:\Users\Asif\Documents\Visual Studio 2017\Projects\trippy\trippy\obj\Debug\netcoreapp2.0\trippy.csprojResolveAssemblyReference.cache

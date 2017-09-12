@@ -1,4 +1,5 @@
-﻿@model IEnumerable<trippy.Models.Trip>
+﻿
+@model trippy.ViewModels.SignUpViewModel
 
 @{ 
     ViewBag.Title = "Home Page";
@@ -6,11 +7,29 @@
 
 
 <div class="row">
-    <div id="welcome" class="col-md-6 col-md-offset-3">
-        <h1>Welcome to Trippy!</h1>
-        <p>This simple app will help you plan trips all around the world. </p>
-        <a asp-controller="App" asp-action="Trips" class="btn btn-success btn-lg">
-            Let's Go
-        </a>
+  
+    <div class="col-md-5" id="landing-page">
+        <h2>Let's go on a journey!</h2>
+        <form method="post" novalidate>
+
+            <span asp-validation-summary="ValidationSummary.ModelOnly"></span>
+
+            <div class="form-group">
+                <label asp-for="Email">Email Address</label>
+                <input asp-for="Email" class="form-control" placeholder="user@email.com"/>
+                <span asp-validation-for="Email" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="Super Secret"/>
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create an Account" class="btn btn-success" />
+            </div>
+
+        </form>
     </div>
 </div>

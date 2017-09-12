@@ -1,32 +1,41 @@
 ﻿
-#container {
-    margin: 0 0 0 200px;
-    transition: margin-left ease .25s;
+body {
+    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-    #container.hide-sidebar{
-        margin-left: 0;
+#container .navbar{
+    padding-left: 15%;
+    padding-right: 15%;
+    /* transition: margin-left ease .25s; */
+}
+
+    #container.show-sidebar{
+        margin-left: 200px;
         transition: margin-left ease .25s;
     }
 
-    #container .navbar-brand{
-        font-size: 22px;
-    }
+#container .navbar-brand {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4582ec;
+}
+
 
 #sidebar {
     position: fixed;
     height: 100%;
-    background-color: #212121;
+    background-color: white; /*#2c3e50 #212121 */;
     color: #BDBDBD;
     width: 200px;
     overflow: hidden;
-    left: 0;
+    left: -200px;
     transition: left ease .25s;
 }
 
-    #sidebar.hide-sidebar{
-        left: -200px;
+    #sidebar.show-sidebar{
+        left: 0px;
         transition: left ease .25s;
+        
     }
 
     #sidebar .nav{
@@ -52,6 +61,11 @@
     
 }
 
+#main {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
 .menu {
     list-style: none;
     font-size: 12px;
@@ -65,6 +79,6 @@
         color: #eee;
     }
 
-#welcome{
-    text-align: center;
+#landing-page{
+    margin-top: 10%;
 }
