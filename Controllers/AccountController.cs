@@ -13,10 +13,12 @@ namespace trippy.Controllers
     public class AccountController : Controller
     {
         private SignInManager<User> _signInManager;
+        private UserManager<User> _userManager;
 
-        public AccountController(SignInManager<User> signInManager)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
         public IActionResult Login()
         {
@@ -52,6 +54,40 @@ namespace trippy.Controllers
                 {
                     ModelState.AddModelError("", "Username or Password Incorrect");
                 }
+            }
+            return View();
+        }
+
+        
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost("Account/SignUp")]
+        public async Task<ActionResult> SignUp(SignUpViewModel signUpView)
+        {
+            if (ModelState.IsValid)
+            {
+                if (await _userManager.FindByEmailAsync(signUpView.Email) == null)
+                {
+                    var User = new User()
+                    {
+                        UserName = signUpView.Username,
+                        Email = signUpView.Email
+                    };
+                    await _userManager.CreateAsync(User, signUpView.Password);
+                    return RedirectToAction("Trips", "App");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "User already exists.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Invalid Username or Password");
             }
             return View();
         }

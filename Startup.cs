@@ -93,7 +93,7 @@ namespace trippy
             }
 
             app.UseStaticFiles();
-            AuthAppBuilderExtensions.UseAuthentication(app);
+            app.UseIdentity();
             app.UseMvc(config =>
             {
                 config.MapRoute(
@@ -105,7 +105,6 @@ namespace trippy
             });
 
             seed.EnsureSeedData().Wait();
-
         }
     }
 }

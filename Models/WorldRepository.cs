@@ -39,10 +39,27 @@ namespace trippy.Models
                 .FirstOrDefault();
                 
         }
-
-        public void AddStop(string tripName, Stop stop)
+        public Trip GetUserTripByName(string tripName, string userName)
         {
-            var trip = GetTripByName(tripName);
+            return _context.Trips
+             .Include(trip => trip.Stops)
+             .Where(trip => trip.UserName == userName && trip.Name == tripName)
+             .FirstOrDefault();
+        }
+
+        public IEnumerable<Trip> GetTripsByUsername(string userName)
+        {
+            return _context.Trips
+                .Where(trip => trip.UserName == userName)
+                .Include(trip=> trip.Stops)
+                .ToList();
+                
+        }
+
+
+        public void AddStop(string tripName, Stop stop, string userName)
+        {
+            var trip = GetUserTripByName(tripName, userName);
             if (trip != null)
             {
                 trip.Stops.Add(stop);

@@ -31,7 +31,7 @@ namespace trippy.Controllers.Api
 
             try
             {
-                var result = _repository.GetAllTrips();
+                var result = _repository.GetTripsByUsername(this.User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<TripViewModel>>(result));
             }
             catch(Exception ex)
@@ -49,6 +49,8 @@ namespace trippy.Controllers.Api
                 if (ModelState.IsValid)
                 {
                     var newTrip = Mapper.Map<Trip>(trip);
+                    newTrip.UserName = User.Identity.Name;
+
                     _repository.AddTrip(newTrip);
                     if (await _repository.SaveChangesAsync())
                     {

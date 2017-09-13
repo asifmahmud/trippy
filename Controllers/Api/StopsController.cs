@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +13,7 @@ using trippy.ViewModels;
 
 namespace trippy.Controllers.Api
 {
+    [Authorize]
     public class StopsController : Controller
     {
         private ILogger<StopsController> _logger;
@@ -30,7 +32,7 @@ namespace trippy.Controllers.Api
         {
             try
             {
-                var trip = _repository.GetTripByName(tripName);
+                var trip = _repository.GetUserTripByName(tripName, User.Identity.Name);
                 var stops = trip.Stops.OrderBy(stop => stop.Order).ToList();
                 return Ok(Mapper.Map<IEnumerable<StopViewModel>>(stops));
             }
@@ -61,7 +63,7 @@ namespace trippy.Controllers.Api
                         newStop.Latitude = geocode.Latitude;
                         newStop.Longitude = geocode.Longitude;
 
-                        _repository.AddStop(tripName, newStop);
+                        _repository.AddStop(tripName, newStop, User.Identity.Name);
                         if (await _repository.SaveChangesAsync())
                         {
                             string path = string.Format("api/trips/{0}/stops/{1}", tripName, newStop.Name);

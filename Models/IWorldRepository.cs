@@ -7,8 +7,10 @@ namespace trippy.Models
     {
         IEnumerable<Trip> GetAllTrips();
         void AddTrip(Trip trip);
-        void AddStop(string tripName, Stop stop);
+        void AddStop(string tripName, Stop stop, string userName);
         Task<bool> SaveChangesAsync();
         Trip GetTripByName(string tripName);
+        Trip GetUserTripByName(string tripName, string userName);
+        IEnumerable<Trip> GetTripsByUsername(string userName);
     }
 }
