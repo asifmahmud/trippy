@@ -50,10 +50,10 @@ namespace trippy.Models
         public IEnumerable<Trip> GetTripsByUsername(string userName)
         {
             return _context.Trips
+                .Include(trip => trip.Stops)
                 .Where(trip => trip.UserName == userName)
-                .Include(trip=> trip.Stops)
                 .ToList();
-                
+            
         }
 
 

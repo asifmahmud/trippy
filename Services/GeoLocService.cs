@@ -37,10 +37,6 @@ namespace trippy.Services
             var client = new HttpClient();
             var json = await client.GetStringAsync(url);
 
-            Console.WriteLine("================================================");
-            Console.WriteLine("JSON: {0}", json);
-            Console.WriteLine("================================================");
-
             // Read out the results
 
             var results = JObject.Parse(json);

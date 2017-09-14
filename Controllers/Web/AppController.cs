@@ -33,6 +33,15 @@ namespace trippy.Controllers.Web
         }
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("ReturningUser", "App");
+            }
+            return View();
+        }
+
+        public IActionResult ReturningUser()
+        {
             return View();
         }
 
