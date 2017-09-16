@@ -9,8 +9,10 @@
         var vm = this;
         vm.tripName = $routeParams.tripName;
         vm.stops = [];
+        vm.newStop = {};
         vm.errorMessage = "";
         vm.isBusy = true;
+
 
         $http.get("/api/trips/" + vm.tripName + "/stops")
             .then(function (res) {
@@ -46,8 +48,15 @@
                     strokeWeight: 4
                 });
 
+
+
                 //Adding a marker to each stop
                 vm.stops.forEach(function (data) {
+                    var contentString = '<div> <p><b>Current Location: </b></p></div>' + 
+                                        '<div><p>' + data.name + '</p></div>';
+                                        
+                    $scope.infoWindow = new google.maps.InfoWindow({ content: contentString });
+
                     $scope.marker = new google.maps.Marker({
                         position: { lat: data.latitude, lng: data.longitude },
                         map: $scope.map,
@@ -56,10 +65,30 @@
                             scale: 4
                         },
                     });
+
+                    $scope.marker.addListener('click', function () {
+                        $scope.infoWindow.open($scope.map, $scope.marker);
+                    });
+
                 });
                 
                 $scope.tripStops.setMap($scope.map);
             });
+
+        vm.addStop = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+            $http.post("/api/trips/" + vm.tripName + "/stops", vm.newStop)
+                .then(function (res) {
+                    vm.stops.push(res.data);
+                }, function (error) {
+                    vm.errorMessage = "Failed to save stop: " + error;
+                })
+                .finally(function () {
+                    vm.isBusy = false;
+                    vm.newStop = {};
+                });
+        };
         
 
         
