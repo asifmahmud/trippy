@@ -1,11 +1,10 @@
 ﻿
-
 <div>
     <div>
         <a href="#/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a>
     </div>    
     <div class="col-md-4">
-        <h2>{{vm.tripName}}</h2>
+        <h3>{{vm.tripName}}</h3>
 
         <wait-cursor ng-show="vm.isBusy"></wait-cursor>
 
@@ -43,7 +42,7 @@
     </div>
 
     <div class="col-md-8">
-        <h2>The Map</h2>
-        <ul></ul>
+        <h3>The Map</h3>
+        <div id="map"></div>
     </div>
 </div>
