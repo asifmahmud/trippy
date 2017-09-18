@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using trippy.Services;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +7,7 @@ using trippy.Models;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 using trippy.ViewModels;
-using System.Net;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,7 +42,7 @@ namespace trippy
 
             })
             .AddEntityFrameworkStores<WorldContext>();
-
+            
             if (_env.IsDevelopment())
             {
                 services.AddScoped<IMailService, DebugMailService>();

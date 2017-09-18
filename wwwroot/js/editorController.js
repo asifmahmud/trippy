@@ -24,7 +24,11 @@
             })
             .finally(function () {
                 vm.isBusy = false;
-                _showMap();
+                var center = {
+                    lat: vm.stops[vm.stops.length - 1].latitude,
+                    lng: vm.stops[vm.stops.length - 1].longitude
+                };
+                _showMap(center);
             });
 
         vm.addStop = function () {
@@ -35,7 +39,8 @@
             $http.post(url, vm.newStop)
                 .then(function (res) {
                     vm.stops.push(res.data);
-                    vm.successMessage = "Stop Successfully added. Please refresh page to see it on the map";
+                    vm.successMessage =
+                        "Stop Successfully added. Please refresh page to see it on the map";
                 }, function (error) {
                     vm.errorMessage = "Failed to save stop: " + error;
                 })
@@ -45,8 +50,7 @@
                 });
         };
 
-        function _showMap() {
-            var startingLocation = { lat: vm.stops[0].latitude, lng: vm.stops[0].longitude };
+        function _showMap(center) {
 
             var mapStops = _.map(vm.stops, function (data) {
                 return {
@@ -58,7 +62,7 @@
 
             $scope.mapOptions = {
                 zoom: 4,
-                center: startingLocation,
+                center: center,
                 mapTypeId: 'terrain'
             };
 
@@ -76,13 +80,22 @@
 
             //Adding a marker to each stop
             vm.stops.forEach(function (data) {
-                var contentString = '<div> <p><b>Current Location: </b></p></div>' +
-                    '<div><p>' + data.name + '</p></div>';
+                var contentString =
+                    `<div> 
+                        <p><b>Current Location: </b>` + data.name + `</p>
+                    </div>
+                    <div>
+                        <p><b> Arrival Date: </b>` + new Date(data.arrival).toLocaleDateString('en-US') + `</p>
+                    </div>
+                    `
 
-                $scope.infoWindow = new google.maps.InfoWindow({ content: contentString });
+                var infoWindow = new google.maps.InfoWindow({ content: contentString });
 
-                $scope.marker = new google.maps.Marker({
-                    position: { lat: data.latitude, lng: data.longitude },
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: data.latitude,
+                        lng: data.longitude
+                    },
                     map: $scope.map,
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
@@ -90,18 +103,14 @@
                     },
                 });
 
-                $scope.marker.addListener('click', function () {
-                    $scope.infoWindow.open($scope.map, $scope.marker);
+                marker.addListener('click', function () {
+                    infoWindow.open($scope.map, marker);
                 });
 
             });
 
             $scope.tripStops.setMap($scope.map);
         }
-        
-
-        
-
         
     }
 

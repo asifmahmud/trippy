@@ -7,30 +7,64 @@
 
 
 <div class="row">
-  
-    <div class="col-md-5" id="landing-page">
-        <h2>Let's go on a journey!</h2>
-        <br />
-        <form method="post" novalidate>
 
-            <span asp-validation-summary="ValidationSummary.ModelOnly"></span>
+    <div id="landing-page">
+        <div class="col-md-6">
+            <h3>Login</h3>
+            <form method="post" novalidate>
 
-            <div class="form-group">
-                <label asp-for="Username">Username</label>
-                <input asp-for="Username" class="form-control" placeholder="Enter Username"/>
-                <span asp-validation-for="Username" class="text-warning"></span>
-            </div>
+                <span asp-validation-summary="ValidationSummary.ModelOnly"></span>
 
-            <div class="form-group">
-                <label asp-for="Password">Password</label>
-                <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password"/>
-                <span asp-validation-for="Password" class="text-warning"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="Enter Username" />
+                    <span asp-validation-for="Username" class="text-warning"></span>
+                </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create an Account" class="btn btn-success" />
-            </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password" />
+                    <span asp-validation-for="Password" class="text-warning"></span>
+                </div>
 
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-success" />
+                </div>
+            </form>
+           
+        </div>
+
+        <div class="col-md-6">
+            <h3>Sign Up</h3>
+            <form method="post" novalidate>
+
+                <span asp-validation-summary="ValidationSummary.ModelOnly"></span>
+
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="Enter Username" />
+                    <span asp-validation-for="Username" class="text-warning"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter Email Address" />
+                    <span asp-validation-for="Email" class="text-warning"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password" />
+                    <span asp-validation-for="Password" class="text-warning"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create an Account" class="btn btn-success" />
+                </div>
+
+            </form>
+        </div>
+
     </div>
 </div>

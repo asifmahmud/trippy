@@ -1,3 +1,5 @@
 # Ignore bower components
 wwwroot/lib/*
 config.json
+bin/*
+obj/*

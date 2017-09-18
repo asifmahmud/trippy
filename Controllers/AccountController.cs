@@ -65,6 +65,7 @@ namespace trippy.Controllers
         }
 
         [HttpPost("Account/SignUp")]
+        [HttpPost("/")]
         public async Task<ActionResult> SignUp(SignUpViewModel signUpView)
         {
             if (ModelState.IsValid)
@@ -77,8 +78,19 @@ namespace trippy.Controllers
                         Email = signUpView.Email
                     };
                     await _userManager.CreateAsync(User, signUpView.Password);
-                    return RedirectToAction("Trips", "App");
-
+                    var signInResult = await _signInManager.PasswordSignInAsync(
+                                                                signUpView.Username, 
+                                                                signUpView.Password, 
+                                                                true, 
+                                                                false);
+                    if (signInResult.Succeeded)
+                    {
+                        return RedirectToAction("Trips", "App");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
                 }
                 else
                 {
