@@ -3,3 +3,7 @@ wwwroot/lib/*
 config.json
 bin/*
 obj/*
+Migrations/*
+Properties/*
+*.csproj
+*.user
