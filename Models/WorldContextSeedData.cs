@@ -37,7 +37,7 @@ namespace trippy.Models
                 var CalTrip = new Trip()
                 {
                     DateCreated = DateTime.Now,
-                    Name = "California Trip",
+                    Name = "US Trip",
                     UserName = "asifmahmud",
                     Stops = new List<Stop>()
                     {
@@ -56,7 +56,7 @@ namespace trippy.Models
                 var usTrip = new Trip()
                 {
                     DateCreated = DateTime.Now,
-                    Name = "US Trip",
+                    Name = "World Trip",
                     UserName = "asifmahmud",
                     Stops = new List<Stop>()
                     {

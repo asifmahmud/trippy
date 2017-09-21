@@ -22,7 +22,7 @@ Trip Management
 
 View Stops
 
-![](http://i64.tinypic.com/2vl5x6c.jpg)
+![](http://i66.tinypic.com/2ufrpjb.jpg)
 
 Contact
 
