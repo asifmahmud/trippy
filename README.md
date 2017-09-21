@@ -6,7 +6,7 @@ Coming soon!
 
 Homepage
 
-![Homepage](http://i64.tinypic.com/308wthh.jpg)
+![Homepage](http://i63.tinypic.com/j8ip1l.jpg)
 
 Login
 
