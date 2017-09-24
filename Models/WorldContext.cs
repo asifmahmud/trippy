@@ -25,7 +25,18 @@ namespace trippy.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:DbConnection"]);
+            string dbname   = _config["ConnectionStrings:RDS_DB_NAME"];
+            string username = _config["ConnectionStrings:RDS_USERNAME"];
+            string password = _config["ConnectionStrings:RDS_PASSWORD"];
+            string hostname = _config["ConnectionStrings:RDS_HOSTNAME"];
+            string port     = _config["ConnectionStrings:RDS_PORT"];
+
+            string connection = "Data Source=" + hostname +
+                                ";Initial Catalog=" + dbname + 
+                                ";User ID=" + username + 
+                                ";Password=" + password + ";";
+
+            optionsBuilder.UseSqlServer(connection);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace trippy.Models
       
         public async Task EnsureSeedData()
         {
+            
             if (await _userManager.FindByEmailAsync("amahmud@uci.edu") == null)
             {
                 var User = new User()
@@ -31,6 +32,7 @@ namespace trippy.Models
 
                 await _userManager.CreateAsync(User, "Anzam478!");
             }
+            
 
             if (!_context.Trips.Any())
             {

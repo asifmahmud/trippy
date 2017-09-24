@@ -84,7 +84,8 @@ namespace trippy
             }
             else
             {
-                factory.AddDebug(LogLevel.Error);
+                app.UseDeveloperExceptionPage();
+                factory.AddDebug(LogLevel.Information);
             }
 
             app.UseStaticFiles();
