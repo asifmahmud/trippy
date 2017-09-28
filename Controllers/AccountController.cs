@@ -36,7 +36,7 @@ namespace trippy.Controllers
            
             if (ModelState.IsValid)
             {
-                var signInResult = await _signInManager.PasswordSignInAsync(loginView.Username, loginView.Password, true, false);
+                var signInResult = await _signInManager.PasswordSignInAsync(loginView.LoginUsername, loginView.LoginPassword, true, false);
 
                 if (signInResult.Succeeded)
                 {
@@ -59,7 +59,7 @@ namespace trippy.Controllers
         }
 
         
-        public ActionResult SignUp()
+        public IActionResult SignUp()
         {
             return View();
         }
@@ -70,17 +70,17 @@ namespace trippy.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _userManager.FindByEmailAsync(signUpView.Email) == null)
+                if (await _userManager.FindByEmailAsync(signUpView.SignupEmail) == null)
                 {
                     var User = new User()
                     {
-                        UserName = signUpView.Username,
-                        Email = signUpView.Email
+                        UserName = signUpView.SignupUsername,
+                        Email = signUpView.SignupEmail
                     };
-                    await _userManager.CreateAsync(User, signUpView.Password);
+                    await _userManager.CreateAsync(User, signUpView.SignupPassword);
                     var signInResult = await _signInManager.PasswordSignInAsync(
-                                                                signUpView.Username, 
-                                                                signUpView.Password, 
+                                                                signUpView.SignupUsername, 
+                                                                signUpView.SignupPassword, 
                                                                 true, 
                                                                 false);
                     if (signInResult.Succeeded)
@@ -89,7 +89,7 @@ namespace trippy.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Login", "Account");
+                        return RedirectToAction("SignUp", "Account");
                     }
                 }
                 else

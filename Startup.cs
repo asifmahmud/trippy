@@ -43,24 +43,17 @@ namespace trippy
             })
             .AddEntityFrameworkStores<WorldContext>();
             
-            if (_env.IsDevelopment())
-            {
-                services.AddScoped<IMailService, DebugMailService>();
 
-            }
+            services.AddScoped<IMailService, DebugMailService>();
+
+
 
             services.AddLogging();
             services.AddDbContext<WorldContext>();
             services.AddTransient<GeoLocService>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
-            services.AddMvc(config =>
-            {
-                if (_env.IsProduction())
-                {
-                    config.Filters.Add(new RequireHttpsAttribute());
-                }
-            });
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,11 +75,6 @@ namespace trippy
                 app.UseDeveloperExceptionPage();
                 factory.AddDebug(LogLevel.Information);
             }
-            else
-            {
-                app.UseDeveloperExceptionPage();
-                factory.AddDebug(LogLevel.Information);
-            }
 
             app.UseStaticFiles();
             app.UseIdentity();
@@ -100,7 +88,7 @@ namespace trippy
 
             });
 
-            seed.EnsureSeedData().Wait();
+            //seed.EnsureSeedData().Wait();
         }
     }
 }
