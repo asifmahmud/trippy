@@ -12,13 +12,13 @@ namespace trippy.ViewModels
 
         [EmailAddress]
         [Required]
-        public string SignupEmail { get; set; }
+        public string Email { get; set; }
 
         [Required]
-        public string SignupUsername { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 8)]
-        public string SignupPassword { get; set; }
+        public string Password { get; set; }
     }
 }

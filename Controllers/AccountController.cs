@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using trippy.Models;
 using trippy.ViewModels;
@@ -36,7 +37,7 @@ namespace trippy.Controllers
            
             if (ModelState.IsValid)
             {
-                var signInResult = await _signInManager.PasswordSignInAsync(loginView.LoginUsername, loginView.LoginPassword, true, false);
+                var signInResult = await _signInManager.PasswordSignInAsync(loginView.Username, loginView.Password, true, false);
 
                 if (signInResult.Succeeded)
                 {
@@ -68,23 +69,40 @@ namespace trippy.Controllers
             return View();
         }
 
+        private bool _passCheck(string password)
+        {
+            string passwordPattern = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*~]).{8, 100})";
+            Regex reg = new Regex(passwordPattern);
+            return reg.IsMatch(password);
+        }
+
         [HttpPost("Account/SignUp")]
         [HttpPost("/")]
         public async Task<ActionResult> SignUp(SignUpViewModel signUpView)
         {
             if (ModelState.IsValid)
             {
-                if (await _userManager.FindByEmailAsync(signUpView.SignupEmail) == null)
+                if (!_passCheck(signUpView.Password))
+                {
+                    ViewBag.signUpError =
+                        "Your password must be at least 8 characters and must " +
+                        "include at aleast one upper case character, one lower " +
+                        "case character, one special character ($,@,% ...) and a number.";
+
+                    return View();
+                }
+
+                if (await _userManager.FindByEmailAsync(signUpView.Email) == null)
                 {
                     var User = new User()
                     {
-                        UserName = signUpView.SignupUsername,
-                        Email = signUpView.SignupEmail
+                        UserName = signUpView.Username,
+                        Email = signUpView.Email
                     };
-                    await _userManager.CreateAsync(User, signUpView.SignupPassword);
+                    await _userManager.CreateAsync(User, signUpView.Password);
                     var signInResult = await _signInManager.PasswordSignInAsync(
-                                                                signUpView.SignupUsername, 
-                                                                signUpView.SignupPassword, 
+                                                                signUpView.Username, 
+                                                                signUpView.Password, 
                                                                 true, 
                                                                 false);
                     if (signInResult.Succeeded)
@@ -106,6 +124,7 @@ namespace trippy.Controllers
             else
             {
                 ModelState.AddModelError("", "Invalid Username or Password");
+                ViewBag.signUpError = "Invalid Username or Password";
             }
             return View();
         }

@@ -10,10 +10,10 @@ namespace trippy.ViewModels
     public class LoginViewModel
     {
         [Required]
-        public string LoginUsername { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [StringLength(100, MinimumLength = 8)]
-        public string LoginPassword { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -21,21 +21,21 @@
                 <div class="alert alert-dismissible alert-danger">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <span>
-                        <strong>Error:</strong><p>@ViewBag.loginError</p>
+                        <strong>Error</strong><p>@ViewBag.loginError</p>
                     </span>
                 </div>
             }
 
             <div class="form-group">
-                <label asp-for="LoginUsername">Username</label>
-                <input asp-for="LoginUsername" class="form-control" placeholder="Enter Username" />
-                <span asp-validation-for="LoginUsername" class="text-warning"></span>
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-control" placeholder="Enter Username" />
+                <span asp-validation-for="Username" class="text-warning"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="LoginPassword">Password</label>
-                <input type="password" asp-for="LoginPassword" class="form-control" placeholder="Enter Password" />
-                <span asp-validation-for="LoginPassword" class="text-warning"></span>
+                <label asp-for="Password">Password</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password" />
+                <span asp-validation-for="Password" class="text-warning"></span>
             </div>
 
             <div class="form-group">
