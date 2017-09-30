@@ -26,7 +26,7 @@ namespace trippy.Controllers
             {
                 return RedirectToAction("Trips", "App");
             }
-
+            ViewBag.loginError = "";
             return View();
         }
 
@@ -53,6 +53,9 @@ namespace trippy.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Username or Password Incorrect");
+                    ViewBag.loginError = "Username or Password is incorrect";
+                    return View();
+
                 }
             }
             return View();
@@ -61,6 +64,7 @@ namespace trippy.Controllers
         
         public IActionResult SignUp()
         {
+            ViewBag.signUpError = "";
             return View();
         }
 
@@ -95,6 +99,8 @@ namespace trippy.Controllers
                 else
                 {
                     ModelState.AddModelError("", "User already exists.");
+                    ViewBag.signUpError = "The user with the email address already exsists";
+                    return View();
                 }
             }
             else
