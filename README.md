@@ -5,7 +5,7 @@ users can plan trips using the help of a map. Trips are
 planned using "stops" which can be viewed directly on
 the map.
 
-[View App Demo](http://ec2-52-53-149-125.us-west-1.compute.amazonaws.com)
+[App Demo](http://ec2-52-53-149-125.us-west-1.compute.amazonaws.com)
 
 # Technologies Used
 
